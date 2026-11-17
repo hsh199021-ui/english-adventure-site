@@ -1,0 +1,32 @@
+英语小冒险 · PWA 版部署说明
+=====================================
+
+一、这包里有什么
+  index.html      主程序（约 0.64MB，不含音频）
+  assets/         956 个离线音频（约 12.9MB）
+  manifest.json   应用信息（名称、图标、全屏显示）
+  sw.js           离线缓存（装好后断网也能玩）
+  icons/          主屏幕图标 180/192/512
+
+二、上传到 Cloudflare Pages（约 5 分钟）
+  1. 登录 dash.cloudflare.com
+  2. 左侧 Workers & Pages → Create → Pages → Upload assets
+  3. 项目名填 english-adventure（会成为网址一部分）
+  4. 把本文件夹整个拖进去（或先压成 zip 再拖）→ Deploy site
+  5. 得到网址，例如 https://english-adventure.pages.dev
+
+三、在 iPhone / iPad 上装成 App
+  1. Safari 打开上面的网址（必须是 Safari，微信内打开不行）
+  2. 首次打开后放在前台等 1～2 分钟，页面会在后台把音频全部缓存
+  3. 点底部「分享」按钮 → 添加到主屏幕 → 完成
+  4. 之后点桌面图标即全屏运行，断网也能玩
+
+四、以后更新内容
+  Cloudflare → 该项目 → Deployments → Create new deployment → 重新拖上传
+  注意：sw.js 里的 VERSION 建议同步改一下（v1 → v2），否则旧缓存可能不刷新。
+
+五、常见问题
+  · 打不开 / 白屏：确认上传的是文件夹内容（index.html 在根目录），不是只有 zip
+  · 没声音：iOS 需要先点一下屏幕（浏览器的自动播放限制），点任意按钮后再听
+  · 卡在加载：检查 assets 是否完整上传（应有 956 个 mp3）
+  · 想换域名：Pages 项目 → Custom domains 绑定自己的域名
